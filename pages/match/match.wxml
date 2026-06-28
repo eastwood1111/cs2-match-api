@@ -1,0 +1,53 @@
+<view class="page match-page">
+  <view wx:if="{{loading}}" class="loading-panel">加载中</view>
+
+  <view wx:elif="{{error}}" class="notice">{{error}}</view>
+
+  <block wx:elif="{{match}}">
+    <view class="match-head">
+      <view>
+        <text class="map-name">{{match.mapName}}</text>
+        <view class="match-meta">{{match.mode}} · {{match.startedAtText}}</view>
+      </view>
+      <view class="score">{{match.score}}</view>
+    </view>
+
+    <view class="metrics">
+      <view class="metric">
+        <text class="metric-value">{{match.kills}}</text>
+        <text class="metric-label">K</text>
+      </view>
+      <view class="metric">
+        <text class="metric-value">{{match.deaths}}</text>
+        <text class="metric-label">D</text>
+      </view>
+      <view class="metric">
+        <text class="metric-value">{{match.assists}}</text>
+        <text class="metric-label">A</text>
+      </view>
+      <view class="metric">
+        <text class="metric-value">{{match.adr}}</text>
+        <text class="metric-label">ADR</text>
+      </view>
+    </view>
+
+    <view class="section-title">玩家数据</view>
+
+    <view class="scoreboard">
+      <view class="score-row header-row">
+        <text class="player">玩家</text>
+        <text>K</text>
+        <text>D</text>
+        <text>A</text>
+        <text>ADR</text>
+      </view>
+      <view wx:for="{{match.players}}" wx:key="steamId64" class="score-row {{item.isCurrentUser ? 'current-row' : ''}}">
+        <text class="player">{{item.name}}</text>
+        <text>{{item.kills}}</text>
+        <text>{{item.deaths}}</text>
+        <text>{{item.assists}}</text>
+        <text>{{item.adr}}</text>
+      </view>
+    </view>
+  </block>
+</view>

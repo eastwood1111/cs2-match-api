@@ -1,0 +1,17 @@
+{
+  "name": "cs2-match-api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "CS2 match data API for WeChat Mini Program and WeChat Cloud Run.",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mysql2": "^3.11.5"
+  }
+}

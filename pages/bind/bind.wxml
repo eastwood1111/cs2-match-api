@@ -1,0 +1,27 @@
+<view class="page bind-page">
+  <view class="form-panel">
+    <view class="field">
+      <text class="field-label">SteamID64</text>
+      <input class="input" type="number" maxlength="17" value="{{steamId64}}" data-field="steamId64" bindinput="onInput" placeholder="7656119..." />
+    </view>
+
+    <view class="field">
+      <text class="field-label">Steam 昵称</text>
+      <input class="input" value="{{steamName}}" data-field="steamName" bindinput="onInput" placeholder="可选" />
+    </view>
+
+    <view class="field">
+      <text class="field-label">比赛授权码</text>
+      <input class="input" password value="{{matchAuthCode}}" data-field="matchAuthCode" bindinput="onInput" placeholder="可稍后补充" />
+    </view>
+
+    <view class="field">
+      <text class="field-label">最近比赛分享码</text>
+      <input class="input" value="{{knownCode}}" data-field="knownCode" bindinput="onInput" placeholder="可稍后补充" />
+    </view>
+  </view>
+
+  <view wx:if="{{error}}" class="notice">{{error}}</view>
+
+  <button class="primary-btn save-btn" loading="{{saving}}" disabled="{{saving}}" bindtap="save">保存绑定</button>
+</view>

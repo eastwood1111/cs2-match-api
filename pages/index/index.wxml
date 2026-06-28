@@ -1,0 +1,69 @@
+<view class="page index-page">
+  <view class="topbar">
+    <view>
+      <text class="eyebrow">CS2 MATCH PULSE</text>
+      <view class="title">官匹数据</view>
+    </view>
+    <button class="icon-btn" loading="{{syncing}}" disabled="{{syncing}}" bindtap="syncMatches">↻</button>
+  </view>
+
+  <view wx:if="{{error}}" class="notice">{{error}}</view>
+
+  <view wx:if="{{loading}}" class="loading-panel">加载中</view>
+
+  <block wx:else>
+    <view wx:if="{{steamAccount}}" class="account-panel">
+      <view>
+        <text class="label">Steam</text>
+        <view class="steam-name">{{steamAccount.steamName || '已绑定账号'}}</view>
+        <text class="steam-id">{{steamAccount.steamId64}}</text>
+      </view>
+      <button class="secondary-btn small-btn" bindtap="goBind">编辑</button>
+    </view>
+
+    <view wx:else class="empty-panel">
+      <text class="empty-title">未绑定 Steam</text>
+      <button class="primary-btn" bindtap="goBind">绑定 Steam</button>
+    </view>
+
+    <view class="stats-grid">
+      <view class="stat-tile">
+        <text class="stat-value">{{summary.total}}</text>
+        <text class="stat-label">比赛</text>
+      </view>
+      <view class="stat-tile accent-green">
+        <text class="stat-value">{{summary.winRate}}</text>
+        <text class="stat-label">胜率</text>
+      </view>
+      <view class="stat-tile accent-amber">
+        <text class="stat-value">{{summary.avgKd}}</text>
+        <text class="stat-label">K/D</text>
+      </view>
+      <view class="stat-tile accent-red">
+        <text class="stat-value">{{summary.avgAdr}}</text>
+        <text class="stat-label">ADR</text>
+      </view>
+    </view>
+
+    <view class="section-title">最近比赛</view>
+
+    <view wx:if="{{!hasMatches}}" class="empty-list">
+      <text>暂无比赛</text>
+    </view>
+
+    <view wx:for="{{matches}}" wx:key="id" class="match-card" bindtap="goMatch" data-id="{{item.id}}">
+      <view class="match-main">
+        <view>
+          <text class="map-name">{{item.mapName}}</text>
+          <view class="match-meta">{{item.mode}} · {{item.startedAtText}}</view>
+        </view>
+        <view class="score">{{item.score}}</view>
+      </view>
+      <view class="match-footer">
+        <text class="result {{item.resultClass}}">{{item.resultText}}</text>
+        <text>K {{item.kills}} / D {{item.deaths}} / A {{item.assists}}</text>
+        <text>ADR {{item.adr}}</text>
+      </view>
+    </view>
+  </block>
+</view>

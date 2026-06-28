@@ -1,0 +1,138 @@
+.loading-panel,
+.match-head,
+.scoreboard {
+  box-sizing: border-box;
+  border: 1rpx solid #e0e3e8;
+  border-radius: 8rpx;
+  background: #ffffff;
+}
+
+.loading-panel {
+  padding: 48rpx 28rpx;
+  color: #747b86;
+  text-align: center;
+}
+
+.notice {
+  padding: 20rpx 22rpx;
+  border-left: 8rpx solid #d84a3a;
+  border-radius: 8rpx;
+  color: #8e241b;
+  background: #fff1ef;
+  font-size: 26rpx;
+}
+
+.match-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24rpx;
+  padding: 28rpx;
+}
+
+.map-name {
+  color: #17191c;
+  font-size: 38rpx;
+  font-weight: 900;
+}
+
+.match-meta {
+  margin-top: 8rpx;
+  color: #747b86;
+  font-size: 24rpx;
+}
+
+.score {
+  color: #17191c;
+  font-size: 42rpx;
+  font-weight: 900;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14rpx;
+  margin: 20rpx 0 30rpx;
+}
+
+.metric {
+  min-height: 126rpx;
+  box-sizing: border-box;
+  padding: 22rpx 14rpx;
+  border-radius: 8rpx;
+  color: #ffffff;
+  background: #202328;
+  text-align: center;
+}
+
+.metric:nth-child(2) {
+  background: #b74335;
+}
+
+.metric:nth-child(3) {
+  background: #a86f12;
+}
+
+.metric:nth-child(4) {
+  background: #16895d;
+}
+
+.metric-value {
+  display: block;
+  font-size: 34rpx;
+  line-height: 1.1;
+  font-weight: 900;
+}
+
+.metric-label {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  opacity: 0.76;
+}
+
+.section-title {
+  margin: 8rpx 0 18rpx;
+  color: #17191c;
+  font-size: 30rpx;
+  font-weight: 900;
+}
+
+.scoreboard {
+  overflow: hidden;
+}
+
+.score-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) repeat(4, minmax(0, 0.55fr));
+  gap: 8rpx;
+  align-items: center;
+  min-height: 76rpx;
+  padding: 0 18rpx;
+  border-bottom: 1rpx solid #eef0f3;
+  color: #3a4048;
+  font-size: 24rpx;
+}
+
+.score-row:last-child {
+  border-bottom: 0;
+}
+
+.header-row {
+  color: #747b86;
+  font-size: 22rpx;
+  font-weight: 800;
+  background: #f8f9fb;
+}
+
+.current-row {
+  color: #111315;
+  font-weight: 900;
+  background: #ecf8f3;
+}
+
+.player {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
