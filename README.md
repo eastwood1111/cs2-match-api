@@ -56,6 +56,12 @@ cs2-match-api
 
 如果云托管界面支持设置构建目录，也可以选择 `server` 目录并使用 `server/Dockerfile`。
 
+云托管容器默认监听 `80` 端口，根目录和 `server` 目录的 Dockerfile 已经设置：
+
+```text
+PORT=80
+```
+
 云托管环境变量：
 
 ```text
