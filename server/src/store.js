@@ -173,6 +173,8 @@ class MySqlStore {
   }
 
   async init() {
+    await ensureMysqlDatabase(this.config)
+
     this.pool = mysql.createPool({
       ...this.config,
       waitForConnections: true,
@@ -389,6 +391,40 @@ function mapDates(row) {
 
 function toMysqlDate(value) {
   return new Date(value).toISOString().slice(0, 19).replace('T', ' ')
+}
+
+async function ensureMysqlDatabase(config) {
+  if (!config.host || !config.user) {
+    throw new Error('MySQL connection is missing MYSQL_HOST/MYSQL_ADDRESS or MYSQL_USER/MYSQL_USERNAME')
+  }
+
+  const database = escapeIdentifier(config.database)
+  let connection
+
+  try {
+    connection = await mysql.createConnection({
+      host: config.host,
+      port: config.port,
+      user: config.user,
+      password: config.password
+    })
+    await connection.execute(`CREATE DATABASE IF NOT EXISTS ${database} CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci`)
+  } catch (error) {
+    console.warn(`Could not create database ${config.database}; continuing with existing database. ${error.message}`)
+  } finally {
+    if (connection) {
+      await connection.end()
+    }
+  }
+}
+
+function escapeIdentifier(value) {
+  const identifier = String(value || '').trim()
+  if (!/^[A-Za-z0-9_]+$/.test(identifier)) {
+    throw new Error('MYSQL_DATABASE can only contain letters, numbers, and underscores')
+  }
+
+  return `\`${identifier}\``
 }
 
 const schemaStatements = [

@@ -74,6 +74,48 @@ MYSQL_DATABASE=cs2_match
 SESSION_SECRET=一串长随机字符串
 ```
 
+如果云托管模板自动生成的是下面这组变量，也可以直接使用，代码已经兼容：
+
+```text
+DB_DIALECT=mysql
+MYSQL_ADDRESS=数据库地址:3306
+MYSQL_USERNAME=数据库用户
+MYSQL_PASSWORD=数据库密码
+MYSQL_DATABASE=cs2_match
+SESSION_SECRET=一串长随机字符串
+```
+
+### 数据库创建
+
+推荐数据库名：
+
+```text
+cs2_match
+```
+
+服务启动时会自动执行：
+
+```sql
+CREATE DATABASE IF NOT EXISTS `cs2_match`;
+```
+
+并自动创建这些表：
+
+```text
+users
+steam_accounts
+matches
+match_players
+```
+
+如果你想在数据库控制台里手动初始化，也可以执行：
+
+```text
+server/sql/schema.sql
+```
+
+重新部署后访问健康检查，如果返回 `storage=mysql`，说明已经切到数据库存储。
+
 部署后把 `utils/config.js` 改成：
 
 ```js
